@@ -55,7 +55,7 @@
                             aria-invalid:border-destructive h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 bg-navy hover:bg-[#003366] text-white transition-all duration-300">Get Quote</a>
                             
                         </div>
-                    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-4 bg-white text-black p-4 rounded-lg mt-3 shadow-lg">
+                    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-4 bg-white text-black p-4 rounded-lg mt-3 shadow-lg transition-all duration-300 transform origin-top scale-y-0 opacity-0">
                         <a href="#how-it-works" class="block text-sm">How It Works</a>
                         <a href="#plans" class="block text-sm">Plans</a>
                         <a href="#faqs" class="block text-sm">FAQs</a>
@@ -1502,12 +1502,25 @@
 
   menuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
+      // Trigger transform + opacity animation
+    if (!mobileMenu.classList.contains('hidden')) {
+        // Opening
+        requestAnimationFrame(() => {
+            mobileMenu.classList.remove('scale-y-0', 'opacity-0');
+            mobileMenu.classList.add('scale-y-100', 'opacity-100');
+        });
+    } else {
+        // Closing animation
+        mobileMenu.classList.add('scale-y-0', 'opacity-0');
+        mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+    }
   });
 </script>
 
 </body>
 
 </html>
+
 
 
 
